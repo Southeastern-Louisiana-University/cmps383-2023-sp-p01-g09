@@ -8,7 +8,7 @@ namespace SP23.P01.Web.Controllers
 {
     [ApiController]
     [Route("api/stations")]
-    public class TrainStationController : Controller
+    public class TrainStationController : ControllerBase
     {
         private DataContext _dataContext;
         public TrainStationController(DataContext context)
