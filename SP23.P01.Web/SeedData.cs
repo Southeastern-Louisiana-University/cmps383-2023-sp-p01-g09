@@ -17,9 +17,8 @@ public static class SeedData
         using (var context = new DataContext(
             serviceProvider.GetRequiredService<
                 DbContextOptions<DataContext>>()))
-        {
-
-            // Look for any movies
+        { 
+            
             if (context.TrainStations.Any())
             {
                 return;   // DB has been seeded
@@ -33,8 +32,13 @@ public static class SeedData
                 },
                 new TrainStation
                 {
-                    Name = "Hammond Station",
-                    Address = "110 Hammond Square Street"
+                    Name = "Peachtree Station",
+                    Address = "1688 Peachtree Street"
+                },
+                new TrainStation
+                {
+                    Name = "Cincinnati Union Terminal",
+                    Address = "1301 Western Avenue"
                 }
 
             );
