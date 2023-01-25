@@ -63,7 +63,6 @@ public static class SeedData
                     Name = "Cincinnati Union Terminal",
                     Address = "1301 Western Avenue"
                 }
-                
 
             );
             context.SaveChanges();
