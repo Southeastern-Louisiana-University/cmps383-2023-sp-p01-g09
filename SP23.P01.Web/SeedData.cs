@@ -55,9 +55,15 @@ public static class SeedData
                 },
                 new TrainStation
                 {
-                    Name = "Hammond Station",
-                    Address = "110 Hammond Square Street"
+                    Name = "Peachtree Station",
+                    Address = "1688 Peachtree Street"
+                },
+                new TrainStation
+                {
+                    Name = "Cincinnati Union Terminal",
+                    Address = "1301 Western Avenue"
                 }
+                
 
             );
             context.SaveChanges();
