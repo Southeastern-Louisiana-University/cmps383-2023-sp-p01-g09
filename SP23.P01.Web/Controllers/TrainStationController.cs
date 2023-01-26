@@ -98,10 +98,33 @@ namespace SP23.P01.Web.Controllers
                 };
                 return Ok(returnStation);
         }
-
-       /* public IActionResult Index()
+        [HttpPost]
+        public IActionResult CreateStation( TrainStationCreateDto createDto)
         {
-            return View();
-        }*/
+            List<String> Errors = new List<String>();
+
+            var TrainStationtoAdd = new TrainStation
+            {
+                Address = createDto.Address,
+                Name = createDto.Name,
+            };
+            _dataContext.TrainStations.Add(TrainStationtoAdd);
+            _dataContext.SaveChanges();
+
+            TrainStationDto returnStation = new TrainStationDto
+            {
+                Id = TrainStationtoAdd.Id,
+                Name = TrainStationtoAdd.Name,
+                Address = TrainStationtoAdd.Address,
+            };
+            return Ok(returnStation);
+
+
+        }
+
+        /* public IActionResult Index()
+         {
+             return View();
+         }*/
     }
 }

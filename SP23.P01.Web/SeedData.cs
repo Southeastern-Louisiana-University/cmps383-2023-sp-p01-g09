@@ -11,8 +11,6 @@ public static class SeedData
 {
     public static void Initialize(IServiceProvider serviceProvider)
     {
-        var content = serviceProvider.GetRequiredService<DataContext>();
-        content.Database.Migrate();
 
         using (var context = new DataContext(
             serviceProvider.GetRequiredService<
