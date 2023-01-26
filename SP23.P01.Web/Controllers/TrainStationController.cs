@@ -99,6 +99,20 @@ namespace SP23.P01.Web.Controllers
                 return Ok(returnStation);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult deleteStation( int id )
+        {
+            var station = _dataContext.TrainStations.FirstOrDefault(x => x.Id == id);
+
+            if( station == null )
+            {
+                return NotFound("The train station the user was seeking does not exist.");
+            }
+
+            _dataContext.TrainStations.Remove(station);
+            return NoContent();
+        }
+
        /* public IActionResult Index()
         {
             return View();
