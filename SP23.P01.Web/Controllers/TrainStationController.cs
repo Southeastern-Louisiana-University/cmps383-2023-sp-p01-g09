@@ -1,8 +1,11 @@
 ﻿
 using Azure;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Tokens;
 using SP23.P01.Web.Features.TrainStation;
+using static System.Net.WebRequestMethods;
 
 namespace SP23.P01.Web.Controllers
 {
@@ -103,6 +106,19 @@ namespace SP23.P01.Web.Controllers
         {
             List<String> Errors = new List<String>();
 
+            if (createDto.Name.IsNullOrEmpty())
+            {
+                return BadRequest("Name must be provided");
+            }
+            if (createDto.Name.Trim().Length > 120)
+            {
+                return BadRequest("The name can't be longer than 120 characters.");
+            }
+            if (createDto.Address.IsNullOrEmpty())
+            {
+                return BadRequest("Address must be provided");
+            }
+
             var TrainStationtoAdd = new TrainStation
             {
                 Address = createDto.Address,
@@ -117,7 +133,8 @@ namespace SP23.P01.Web.Controllers
                 Name = TrainStationtoAdd.Name,
                 Address = TrainStationtoAdd.Address,
             };
-            return Ok(returnStation);
+            string Url = $"http://localhost/api/stations/{returnStation.Id}";
+            return Created(Url,returnStation);
 
 
         }
