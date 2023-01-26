@@ -139,6 +139,22 @@ namespace SP23.P01.Web.Controllers
 
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult deleteStation(int id)
+        {
+            var station = _dataContext.TrainStations.FirstOrDefault(x => x.Id == id);
+
+            if (station == null)
+            {
+                return NotFound("The train station the user was seeking does not exist.");
+            }
+
+            _dataContext.TrainStations.Remove(station);
+            _dataContext.SaveChanges();
+            return Ok();
+        }
+
+
         /* public IActionResult Index()
          {
              return View();
