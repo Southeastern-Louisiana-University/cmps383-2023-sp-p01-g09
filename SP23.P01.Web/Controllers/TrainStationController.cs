@@ -66,15 +66,15 @@ namespace SP23.P01.Web.Controllers
             {
                 Errors.Add("Ids are only integers 1 and up.");
             }
-            if (updatesDto.Name.Trim() == "")
+            if (updatesDto.Name.IsNullOrEmpty())
             {
-                Errors.Add("The name can't be empty.");
+                return BadRequest("Name must be provided"); 
             }
             if (updatesDto.Name.Trim().Length > 120)
             {
                 Errors.Add("The name can't be longer than 120 characters.");
             }
-            if (updatesDto.Address.Trim() == "")
+            if (updatesDto.Address.IsNullOrEmpty())
             {
                 Errors.Add("The address can't be empty.");
             }
